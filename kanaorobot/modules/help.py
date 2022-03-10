@@ -45,14 +45,21 @@ async def help(_, message):
         ]
     ]
     if message.chat.type == "private":
-       await message.reply_text(
-        'Available cmds for now :\n /anime - search anime on AniList\n /malanime - search anime on Myanimelist\n /manga - search manga on Anilist\n /malmanga - search manga on myanimelist\n /character - search character on Anilist\n /malcharacter - search character on myanimelist\n /airing - check airing status of an anime\n /nhentai ID - returns the nhentai in telegraph instant preview format.\n /schedule - Find Anime Schedule',
-        reply_markup=InlineKeyboardMarkup(buttons)
-        )
+        await message.reply_text(
+         'Available cmds for now :\n /anime - search anime on AniList\n /malanime - search anime on Myanimelist\n /manga - search manga on Anilist\n /malmanga - search manga on myanimelist\n /character - search character on Anilist\n /malcharacter - search character on myanimelist\n /airing - check airing status of an anime\n /nhentai ID - returns the nhentai in telegraph instant preview format.\n /schedule - Find Anime Schedule',
+         reply_markup=InlineKeyboardMarkup(buttons)
+         )
     else:
         buttons = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Help",
-                url=f"t.me/kanaorobot?start=help")]])
+            [
+                [
+                    InlineKeyboardButton(
+                        text="Help", url="t.me/kanaorobot?start=help"
+                    )
+                ]
+            ]
+        )
+
         await message.reply("Click the button below.",
                             reply_markup=buttons)
 

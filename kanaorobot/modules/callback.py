@@ -32,13 +32,13 @@ async def _callback(client, CallbackQuery):
                             [InlineKeyboardButton("More Info!", url = mal_url)]
                         ]
             await CallbackQuery.edit_message_text(text = text, reply_markup = InlineKeyboardMarkup(buttons))
-        elif query[0] == "manga" or query[0] == "char":
+        elif query[0] in ["manga", "char"]:
             text, mal_url = data_from_id(query[0], query[-1])
             buttons = [
                         [InlineKeyboardButton("More Info!", url = mal_url)]
                     ]
             await CallbackQuery.edit_message_text(text = text, reply_markup = InlineKeyboardMarkup(buttons))
-        
+
         elif query[0] == "download":
             title, num_pages, artist, lang, tags, page_links = await nhentai_data(query[-1])
             cwd = os.getcwd()

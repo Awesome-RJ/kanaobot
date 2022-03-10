@@ -23,7 +23,7 @@ def data_from_id(category, mal_id):                             # category: anim
 
             text = f"**{title} ({title_jap})**\n\n**MAL ID:** `{_id}`\n**Type:** `{_type}`\n**Volumes:** `{volumes}`\n**Chapters:** `{chapters}`\n**Authors:** `{'; '.join(authors)}`\n**Status:** `{status}`\n**Score:** `{score}` ⭐\n**Genre:** `{', '.join(genre)}`\n\n**Description:** {description}"
             return text, mal_url
-        
+
         elif category == "anime":
             data = jikan.anime(mal_id)
             _id = mal_id
@@ -45,17 +45,14 @@ def data_from_id(category, mal_id):                             # category: anim
 
             text = f"**{title} ({title_jap})**\n\n**MAL ID:** `{_id}`\n**Type:** `{_type}`\n**Episodes:** `{episodes}`\n**Duration:** `{duration}`\n**Premiered:** `{premiered}`\n**Status:** `{status}`\n**Rating:** `{rating}`\n**Score:** `{score}` ⭐\n**Genre:** `{', '.join(genre)}`\n**Studio:** `{', '.join(studios)}`\n\n**Description:** {description}"
             return text, mal_url, trailer
-        
+
         elif category == "char":
             data = jikan.character(mal_id)
             _id = mal_id
             mal_url = data["url"]
             thumb = data["image_url"]
             name = data["name"]
-            if data["nicknames"]:
-                nicknames = ", ".join(data["nicknames"])
-            else:
-                nicknames = None
+            nicknames = ", ".join(data["nicknames"]) if data["nicknames"] else None
             description = text_shortner.make_short(data["about"], thumb, mal_url).replace("\r", "").replace("\\n", "").replace("\n\n\n", "\n").replace("\n\n", "\n")
             anime = [item["name"] for item in data["animeography"]]
 
